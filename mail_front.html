@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<head>
+    <link rel="shortcut icon" href="icon.ico"></link>
+	<title>Outlook Inbox</title>
+	<link href="style.css" rel = "stylesheet" type="text/css">
+	<script src="http://fb.me/react-0.12.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+</head>
+<body>
+    
+	<script type = "text/jsx">
+	/** @jsx React.DOM */
+
+var json = {
+    mail1: "hi, this is the first message",
+    mail2: "Outlook.com Team(member_services@outlook.com)\nto arunkramachandran@outlook.com\nreading mail from arunKramachandran",
+    mail3: "Your New Outlook.com alias is ready\nStart Using your new outlook inbox\nThanks,\nThe Outlook.com Team"
+};
+
+/*var mail = React.createClass({
+    render: function () { 
+        return (
+            <div>
+                <canvas id="myCanvas" width="600" height="500" style="border:1px solid #000000;">
+                </canvas>
+            </div>
+            );
+    });
+*/
+
+var Child = React.createClass({
+    
+    getInitialState: function() {
+        return { focused: ''};
+    },
+
+    readmail: function(event) {
+        console.log(event.target.id);
+        var id = event.target.id;
+        this.setState({focused: json[id]})
+    },
+
+    render: function () {
+        var self = this;
+
+        
+        return (
+            <div className="child">
+                <p><input type="checkbox"></input>View All</p>
+                <br></br>
+                <p>{this.state.focused}</p> 
+                
+                <div className="box">
+                <input type="search" value="Search"></input>
+                </div>
+                
+                <div className="special">
+                    <p>Folders</p>
+                </div>
+                <br></br>
+
+                <details>
+                    <summary>Inbox</summary>
+                <ul>
+                    <li>mail1</li>
+                    <li onClick={self.readmail} id="mail2">mail2</li>
+                    <li onClick={self.readmail} id="mail3">mail3</li>
+                </ul>
+                </details>
+
+                <details>
+                    <summary>junk</summary>
+                    <ul>
+                        <li>mail.net</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Drafts</summary>
+                    <ul>
+                        <li>arun</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Sent</summary>
+                    <ul>
+                        <li>pramode.net</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Deleted</summary>
+                    <ul>
+                        <li>Joby@gmail.com</li>
+                    </ul>
+                </details>
+                 
+            </div>
+            );
+        }
+});
+
+
+var MenuExample = React.createClass({
+
+    getInitialState: function(){
+        return { focused: 0 };
+    },
+
+    //clicked: function(index){
+
+        // The click handler will update the state with
+        // the index of the focused menu entry
+
+      //  this.setState({focused: index});
+    //},
+
+    render: function() {
+
+        // Here we will read the items property, which was passed
+        // as an attribute when the component was created
+
+        var self = this;
+
+        // The map method will loop over the array of menu entries,
+        // and will return a new array with <li> elements.
+
+        return (
+            <div>
+            <table>
+            <tr>
+            <div className="image">
+            <td>
+               <img src="icon1.png" width="50"></img>
+            </td>
+            </div>
+            <td>
+             <section className="parent">
+                <ul>
+                    <li>Outlook.com</li>
+                    <li>New</li>
+                    <li>Delete</li>
+                    <li>Archieve</li>
+                    <li className="before">Delete</li>
+                    <li className="last">MyAccount</li>
+                </ul>
+            </section>
+            </td>
+            <td>
+                    <img src="blueman.png" width="50"></img>
+              </td>
+              <td>
+              
+              </td>
+              </tr>
+            </table> 
+              <section className="new_section"> 
+                <Child />
+              </section>
+
+        </div>
+            /* <div>
+                <ul>{ this.props.items.map(function(m, index){
+        
+                    var style = '';
+        
+                    if(self.state.focused == index){
+                        style = 'focused';
+                    }
+        
+                    // Notice the use of the bind() method. It makes the
+                    // index available to the clicked function:
+        
+                    return <li className={style} onClick={self.clicked.bind(self, index)}>{m}</li>;
+                            
+                        
+        
+                }) }
+                        
+                </ul>
+                    
+                <p>Selected: {this.props.items[this.state.focused]}</p>
+
+                    
+            </div> */
+        );
+
+    }
+});
+
+// Render the menu component on the page, and pass an array with menu options
+
+React.renderComponent(
+    <MenuExample />,
+    document.body
+);
+</script>
+    <div id="place">
+    <h2>Not getting</h2>
+</body>
+</html>
